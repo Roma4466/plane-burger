@@ -1,5 +1,4 @@
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,8 +43,8 @@ class PhotoAdapter(
         private var binding: PictureWithTextBinding = PictureWithTextBinding.bind(itemView)
 
         fun bind(photo: Photo) {
-            binding.title.setText(photo.title)
-            binding.year.setText(photo.year)
+            binding.title.text = photo.title
+            binding.year.text = photo.year
             binding.image.setImageResource(photo.imageRes)
         }
 
@@ -53,12 +52,12 @@ class PhotoAdapter(
             this.itemView.setOnClickListener {
                 val adapterPosition = adapterPosition
                 if (adapterPosition != RecyclerView.NO_POSITION)
-                    listener.onItemClick(it, element)
+                    listener.onItemClick(binding, element)
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(view: View, element: Photo)
+        fun onItemClick(itemBinding: PictureWithTextBinding, element: Photo)
     }
 }

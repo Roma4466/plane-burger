@@ -93,7 +93,11 @@ class MainActivity :
             .commit()
     }
 
-    fun changeTitle(titleRes: Int){
-        supportActionBar?.setTitle(titleRes)
+    fun changeTitle(titleRes: String){
+        supportActionBar?.title = titleRes
+    }
+
+    fun setDefaultTitle(){
+        supportActionBar?.title = "Airplanes"
     }
 }

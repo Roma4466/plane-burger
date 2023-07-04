@@ -16,18 +16,18 @@ private const val PHOTO = "photo"
 class PlaneFragment : Fragment() {
     private var binding: FragmentPlaneBinding? = null
 
-    private var textRes: Int? = null
+    private var textRes: String? = null
     private var imageRes: Int? = null
-    private var titleRes: Int? = null
-    private var titleDescriptionRes: Int? = null
+    private var titleRes: String? = null
+    private var titleDescriptionRes: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            textRes = it.getInt(TEXT)
+            textRes = it.getString(TEXT)
             imageRes = it.getInt(PHOTO)
-            titleRes = it.getInt(TITLE)
-            titleDescriptionRes = it.getInt(TITLE_DESCRIPTION)
+            titleRes = it.getString(TITLE)
+            titleDescriptionRes = it.getString(TITLE_DESCRIPTION)
         }
     }
 
@@ -44,12 +44,12 @@ class PlaneFragment : Fragment() {
 
         binding?.apply {
             titleDescriptionRes?.let {
-                title.setText(it)
+                title.text = it
             }
             titleRes?.let {
                 (requireActivity() as MainActivity).changeTitle(it)
             }
-            textRes?.let { description.setText(it) }
+            textRes?.let { description.text = it }
             if(imageRes == null){
                 image.visibility = View.GONE
             } else{
@@ -58,14 +58,19 @@ class PlaneFragment : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        (requireActivity() as MainActivity).setDefaultTitle()
+    }
+
     companion object {
         @JvmStatic
-        fun newInstance(@StringRes stringRes: Int, @StringRes titleDescriptionRes: Int, photoRes: Int?, @StringRes titleRes: Int) =
+        fun newInstance(stringRes: String, titleDescriptionRes: String, photoRes: Int?, titleRes: String) =
             PlaneFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(TEXT, stringRes)
-                    putInt(TITLE, titleRes)
-                    putInt(TITLE_DESCRIPTION, titleDescriptionRes)
+                    putString(TEXT, stringRes)
+                    putString(TITLE, titleRes)
+                    putString(TITLE_DESCRIPTION, titleDescriptionRes)
                     if (photoRes != null) {
                         putInt(PHOTO, photoRes)
                     }

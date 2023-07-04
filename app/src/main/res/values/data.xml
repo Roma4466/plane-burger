@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="icons">
+        <item>@drawable/boeing_747</item>
+        <item>@drawable/boeing_747</item>
+        <item>@drawable/boeing_747</item>
+        <item>@drawable/boeing_747</item>
+    </array>
+    <array name="descriptionImages">
+        <item>@drawable/description_image</item>
+        <item>@drawable/description_image</item>
+        <item>@drawable/description_image</item>
+        <item>@drawable/description_image</item>
+    </array>
+    <array name="titles">
+        <item>Boeing 747</item>
+        <item>Boeing 747</item>
+        <item>Boeing 747</item>
+        <item>Boeing 747</item>
+    </array>
+    <array name="years">
+        <item>1970</item>
+        <item>1970</item>
+        <item>1970</item>
+        <item>1970</item>
+    </array>
+    <array name="descriptionTitles">
+        <item>Airliner proposal</item>
+        <item>Airliner proposal</item>
+        <item>Airliner proposal</item>
+        <item>Airliner proposal</item>
+    </array>
+    <array name="descriptions">
+        <item>In 1965, Joe Sutter was transferred from Boeing\'s 737 development team to manage the design studies for the new airliner, already assigned the model number 747. Sutter began a design study with Pan Am and other airlines to better understand their requirements. At the time, many thought that long-range subsonic airliners would eventually be superseded by supersonic transport aircraft. Boeing responded by designing the 747 so it could be adapted easily to carry freight and remain in production even if sales of the passenger version declined.\n<big><b>Development and testing</b></big>\nThe flight test program was hampered by problems with the 747\'s JT9D engines. Difficulties included engine stalls caused by rapid throttle movements and distortion of the turbine casings after a short period of service. The problems delayed 747 deliveries for several months; up to 20 aircraft at the Everett plant were stranded while awaiting engine installation.</item>
+        <item>In 1965, Joe Sutter was transferred from Boeing\'s 737 development team to manage the design studies for the new airliner, already assigned the model number 747. Sutter began a design study with Pan Am and other airlines to better understand their requirements. At the time, many thought that long-range subsonic airliners would eventually be superseded by supersonic transport aircraft. Boeing responded by designing the 747 so it could be adapted easily to carry freight and remain in production even if sales of the passenger version declined.\n<big><b>Development and testing</b></big>\nThe flight test program was hampered by problems with the 747\'s JT9D engines. Difficulties included engine stalls caused by rapid throttle movements and distortion of the turbine casings after a short period of service. The problems delayed 747 deliveries for several months; up to 20 aircraft at the Everett plant were stranded while awaiting engine installation.</item>
+        <item>In 1965, Joe Sutter was transferred from Boeing\'s 737 development team to manage the design studies for the new airliner, already assigned the model number 747. Sutter began a design study with Pan Am and other airlines to better understand their requirements. At the time, many thought that long-range subsonic airliners would eventually be superseded by supersonic transport aircraft. Boeing responded by designing the 747 so it could be adapted easily to carry freight and remain in production even if sales of the passenger version declined.\n<big><b>Development and testing</b></big>\nThe flight test program was hampered by problems with the 747\'s JT9D engines. Difficulties included engine stalls caused by rapid throttle movements and distortion of the turbine casings after a short period of service. The problems delayed 747 deliveries for several months; up to 20 aircraft at the Everett plant were stranded while awaiting engine installation.</item>
+        <item>In 1965, Joe Sutter was transferred from Boeing\'s 737 development team to manage the design studies for the new airliner, already assigned the model number 747. Sutter began a design study with Pan Am and other airlines to better understand their requirements. At the time, many thought that long-range subsonic airliners would eventually be superseded by supersonic transport aircraft. Boeing responded by designing the 747 so it could be adapted easily to carry freight and remain in production even if sales of the passenger version declined.\n<big><b>Development and testing</b></big>\nThe flight test program was hampered by problems with the 747\'s JT9D engines. Difficulties included engine stalls caused by rapid throttle movements and distortion of the turbine casings after a short period of service. The problems delayed 747 deliveries for several months; up to 20 aircraft at the Everett plant were stranded while awaiting engine installation.</item>
+    </array>
+
+</resources>
