@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.StringRes
 import com.example.plane_burger.databinding.FragmentPlaneBinding
 
 private const val POSITION = "photo"
@@ -33,6 +32,8 @@ class PlaneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (requireActivity() as MainActivity).setArrowVisibilityToTrue()
+
         binding?.apply {
             position?.let {
                 title.text = getPhotoFromPosition(resources, it).titleDescription
@@ -49,7 +50,7 @@ class PlaneFragment : Fragment() {
             position?.let {
                 try {
                     image.setImageResource(getPhotoFromPosition(resources, it).imageRes)
-                } catch (e: Throwable){
+                } catch (e: Throwable) {
                     image.visibility = View.GONE
                 }
 
@@ -61,6 +62,7 @@ class PlaneFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         (requireActivity() as MainActivity).setDefaultTitle()
+        (requireActivity() as MainActivity).setArrowVisibilityToFalse()
     }
 
     companion object {

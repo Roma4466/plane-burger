@@ -1,34 +1,22 @@
 package com.example.plane_burger
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.inputmethod.InputMethodManager
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.plane_burger.databinding.ActivityMainBinding
-import com.example.plane_burger.ui.theme.PlaneburgerTheme
-import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity :
-    AppCompatActivity(),
-    NavigationView.OnNavigationItemSelectedListener {
+    AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +33,7 @@ class MainActivity :
         )
 
         initDrawer(toolbar)
-        supportActionBar?.title = "Airplanes"
+        supportActionBar?.title = ""
 
         replaceFragment(ListFragment())
     }
@@ -53,39 +41,81 @@ class MainActivity :
     private fun initToolbar(): Toolbar {
         val toolbar = binding?.appBarMain?.toolbar
         setSupportActionBar(toolbar)
+        binding?.appBarMain?.back?.setOnClickListener {
+            super.onBackPressed()
+        }
         return toolbar!!
     }
 
     private fun initDrawer(toolbar: Toolbar) {
         val drawer = binding?.drawerLayout
-        val navigationView = binding?.navView
         val toggle = ActionBarDrawerToggle(
             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
         drawer?.addDrawerListener(toggle)
         toggle.syncState()
-        navigationView?.setNavigationItemSelectedListener(this)
+
+        setupDrawerMenu()
+    }
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        val id = item.itemId
+//
+//        when (id) {
+//            R.id.first_option -> {
+//                replaceFragmentForPlaneFragment(0)
+//            }
+//
+//            R.id.second_option -> {
+//                replaceFragmentForPlaneFragment(1)
+//            }
+//
+//            R.id.third_option -> {
+//                replaceFragmentForPlaneFragment(2)
+//            }
+//
+//            R.id.forth_option -> {
+//                replaceFragmentForPlaneFragment(3)
+//            }
+//        }
+//        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+//        //drawer.closeDrawer(GravityCompat.START)
+//        return true
+//    }
+
+    private fun replaceFragmentForPlaneFragment(i: Int) {
+        val fragment = PlaneFragment.newInstance(i)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null).commit()
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        when (id) {
-            R.id.first_option -> {
+    private fun setupDrawerMenu() {
+        binding?.navView?.apply {
+            val headerView = this.getHeaderView(0)
+            val menuLayout = headerView.findViewById<LinearLayout>(R.id.menu_layout)
+            val close = headerView.findViewById<ImageView>(R.id.close)
+            close.setOnClickListener {
+                binding?.drawerLayout?.close()
             }
 
-            R.id.second_option -> {
-            }
+            for (i in 0..3) {
+                val textView = TextView(this@MainActivity)
+                textView.text = getTitle(resources, i)
+                textView.textSize = 16f
+                textView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                textView.setOnClickListener {
+                    val fragment = PlaneFragment.newInstance(i)
 
-            R.id.third_option -> {
-            }
-
-            R.id.forth_option -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null).commit()
+                }
+                menuLayout.addView(textView)
             }
         }
-        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-        drawer.closeDrawer(GravityCompat.START)
-        return true
     }
 
     private fun replaceFragment(fragment: Fragment) {
@@ -97,11 +127,23 @@ class MainActivity :
             .commit()
     }
 
-    fun changeTitle(titleRes: String) {
-        supportActionBar?.title = titleRes
+    fun changeTitle(title: String) {
+        binding?.appBarMain?.title?.text = title
     }
 
     fun setDefaultTitle() {
-        supportActionBar?.title = "Airplanes"
+        binding?.appBarMain?.title?.text = "Airplanes"
+    }
+
+    fun setArrowVisibilityToTrue() {
+        binding?.navView?.apply {
+            binding?.appBarMain?.back?.visibility = View.VISIBLE
+        }
+    }
+
+    fun setArrowVisibilityToFalse() {
+        binding?.navView?.apply {
+            binding?.appBarMain?.back?.visibility = View.GONE
+        }
     }
 }

@@ -28,3 +28,8 @@ fun getPhotoFromPosition(resources: Resources, i: Int): Photo {
 
     return photo
 }
+
+fun getTitle(resources: Resources,  i: Int): String{
+    val titlesArray = resources.getStringArray(R.array.titles)
+    return titlesArray[i]
+}
