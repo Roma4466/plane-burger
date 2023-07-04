@@ -4,16 +4,23 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/first_option"
-        android:title="@string/boeing_747" />
+        android:title="@string/boeing_747"
+        android:icon="@drawable/baseline_arrow_forward_24"/>
     <item
         android:id="@+id/second_option"
-        android:title="@string/boeing_747" />
+        android:title="@string/boeing_747"
+        android:icon="@drawable/baseline_arrow_forward_24"/>
+
 
     <item
         android:id="@+id/third_option"
-        android:title="@string/boeing_747" />
+        android:title="@string/boeing_747"
+        android:icon="@drawable/baseline_arrow_forward_24"/>
+
 
     <item
         android:id="@+id/forth_option"
-        android:title="@string/boeing_747" />
+        android:title="@string/boeing_747"
+        android:icon="@drawable/baseline_arrow_forward_24"/>
+
 </menu>

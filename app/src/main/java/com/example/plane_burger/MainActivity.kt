@@ -1,6 +1,7 @@
 package com.example.plane_burger
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -9,10 +10,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.plane_burger.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity :
@@ -31,14 +34,7 @@ class MainActivity :
         toolbar.setBackgroundColor(
             ContextCompat.getColor(this, R.color.dark_dark_grey)
         )
-
         initDrawer(toolbar)
-
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-
-        drawerLayout.setOnTouchListener { view, event -> // Consume the touch event to prevent the drawer from closing
-            true
-        }
 
         replaceFragment(ListFragment())
     }
@@ -60,47 +56,18 @@ class MainActivity :
         )
         drawer?.addDrawerListener(toggle)
         toggle.syncState()
-
         setupDrawerMenu()
-    }
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        val id = item.itemId
-//
-//        when (id) {
-//            R.id.first_option -> {
-//                replaceFragmentForPlaneFragment(0)
-//            }
-//
-//            R.id.second_option -> {
-//                replaceFragmentForPlaneFragment(1)
-//            }
-//
-//            R.id.third_option -> {
-//                replaceFragmentForPlaneFragment(2)
-//            }
-//
-//            R.id.forth_option -> {
-//                replaceFragmentForPlaneFragment(3)
-//            }
-//        }
-//        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-//        //drawer.closeDrawer(GravityCompat.START)
-//        return true
-//    }
-
-    private fun replaceFragmentForPlaneFragment(i: Int) {
-        val fragment = PlaneFragment.newInstance(i)
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            .addToBackStack(null).commit()
     }
 
     private fun setupDrawerMenu() {
         binding?.navView?.apply {
             val headerView = this.getHeaderView(0)
             val menuLayout = headerView.findViewById<LinearLayout>(R.id.menu_layout)
+
+            menuLayout.setOnClickListener {
+                throw Exception()
+            }
+
             val close = headerView.findViewById<ImageView>(R.id.close)
             close.setOnClickListener {
                 binding?.drawerLayout?.close()
