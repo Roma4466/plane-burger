@@ -2,6 +2,7 @@ package com.example.plane_burger
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.ComponentActivity
@@ -72,11 +73,14 @@ class MainActivity :
         when (id) {
             R.id.first_option -> {
             }
+
             R.id.second_option -> {
             }
+
             R.id.third_option -> {
             }
-            R.id.forth_option ->{
+
+            R.id.forth_option -> {
             }
         }
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
@@ -93,11 +97,11 @@ class MainActivity :
             .commit()
     }
 
-    fun changeTitle(titleRes: String){
+    fun changeTitle(titleRes: String) {
         supportActionBar?.title = titleRes
     }
 
-    fun setDefaultTitle(){
+    fun setDefaultTitle() {
         supportActionBar?.title = "Airplanes"
     }
 }

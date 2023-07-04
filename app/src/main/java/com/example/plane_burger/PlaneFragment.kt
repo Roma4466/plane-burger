@@ -8,26 +8,17 @@ import android.view.ViewGroup
 import androidx.annotation.StringRes
 import com.example.plane_burger.databinding.FragmentPlaneBinding
 
-private const val TEXT = "text"
-private const val TITLE = "title"
-private const val TITLE_DESCRIPTION = "title DESCRIPTION"
-private const val PHOTO = "photo"
+private const val POSITION = "photo"
 
 class PlaneFragment : Fragment() {
     private var binding: FragmentPlaneBinding? = null
 
-    private var textRes: String? = null
-    private var imageRes: Int? = null
-    private var titleRes: String? = null
-    private var titleDescriptionRes: String? = null
+    private var position: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            textRes = it.getString(TEXT)
-            imageRes = it.getInt(PHOTO)
-            titleRes = it.getString(TITLE)
-            titleDescriptionRes = it.getString(TITLE_DESCRIPTION)
+            position = it.getInt(POSITION)
         }
     }
 
@@ -43,18 +34,27 @@ class PlaneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            titleDescriptionRes?.let {
-                title.text = it
+            position?.let {
+                title.text = getPhotoFromPosition(resources, it).titleDescription
             }
-            titleRes?.let {
-                (requireActivity() as MainActivity).changeTitle(it)
+            position?.let {
+                (requireActivity() as MainActivity).changeTitle(
+                    getPhotoFromPosition(
+                        resources,
+                        it
+                    ).title
+                )
             }
-            textRes?.let { description.text = it }
-            if(imageRes == null){
-                image.visibility = View.GONE
-            } else{
-                image.setImageResource(imageRes!!)
+            position?.let { description.text = getPhotoFromPosition(resources, it).description }
+            position?.let {
+                try {
+                    image.setImageResource(getPhotoFromPosition(resources, it).imageRes)
+                } catch (e: Throwable){
+                    image.visibility = View.GONE
+                }
+
             }
+
         }
     }
 
@@ -65,15 +65,10 @@ class PlaneFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(stringRes: String, titleDescriptionRes: String, photoRes: Int?, titleRes: String) =
+        fun newInstance(i: Int) =
             PlaneFragment().apply {
                 arguments = Bundle().apply {
-                    putString(TEXT, stringRes)
-                    putString(TITLE, titleRes)
-                    putString(TITLE_DESCRIPTION, titleDescriptionRes)
-                    if (photoRes != null) {
-                        putInt(PHOTO, photoRes)
-                    }
+                    putInt(POSITION, i)
                 }
             }
     }
