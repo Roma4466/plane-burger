@@ -24,7 +24,14 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.root?.layoutManager = GridLayoutManager(requireContext(), 2)
-        val adapter = PhotoAdapter(4)
+        val adapter = PhotoAdapter()
+        adapter.photos = mutableListOf(
+            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
+            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
+            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
+            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970)
+        )
+
         binding?.root?.adapter = adapter
     }
 }
