@@ -10,6 +10,7 @@ import com.example.plane_burger.databinding.FragmentPlaneBinding
 
 private const val TEXT = "text"
 private const val TITLE = "title"
+private const val TITLE_DESCRIPTION = "title DESCRIPTION"
 private const val PHOTO = "photo"
 
 class PlaneFragment : Fragment() {
@@ -18,6 +19,7 @@ class PlaneFragment : Fragment() {
     private var textRes: Int? = null
     private var imageRes: Int? = null
     private var titleRes: Int? = null
+    private var titleDescriptionRes: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,7 @@ class PlaneFragment : Fragment() {
             textRes = it.getInt(TEXT)
             imageRes = it.getInt(PHOTO)
             titleRes = it.getInt(TITLE)
+            titleDescriptionRes = it.getInt(TITLE_DESCRIPTION)
         }
     }
 
@@ -40,7 +43,12 @@ class PlaneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
-            titleRes?.let { title.setText(it) }
+            titleDescriptionRes?.let {
+                title.setText(it)
+            }
+            titleRes?.let {
+                (requireActivity() as MainActivity).changeTitle(it)
+            }
             textRes?.let { description.setText(it) }
             if(imageRes == null){
                 image.visibility = View.GONE
@@ -52,11 +60,12 @@ class PlaneFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(@StringRes stringRes: Int, @StringRes titleRes: Int, photoRes: Int?) =
+        fun newInstance(@StringRes stringRes: Int, @StringRes titleDescriptionRes: Int, photoRes: Int?, @StringRes titleRes: Int) =
             PlaneFragment().apply {
                 arguments = Bundle().apply {
                     putInt(TEXT, stringRes)
                     putInt(TITLE, titleRes)
+                    putInt(TITLE_DESCRIPTION, titleDescriptionRes)
                     if (photoRes != null) {
                         putInt(PHOTO, photoRes)
                     }

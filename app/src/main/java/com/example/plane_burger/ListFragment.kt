@@ -67,8 +67,9 @@ class ListFragment : Fragment(), PhotoAdapter.OnItemClickListener {
     override fun onItemClick(view: View, element: Photo) {
         val fragment = PlaneFragment.newInstance(
             stringRes = element.description,
-            titleRes = element.titleDescription,
-            photoRes = element.photoDescription
+            titleRes = element.title,
+            photoRes = element.photoDescription,
+            titleDescriptionRes = element.titleDescription
         )
 
         parentFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)

@@ -77,7 +77,6 @@ class MainActivity :
             R.id.third_option -> {
             }
             R.id.forth_option ->{
-
             }
         }
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
@@ -92,5 +91,9 @@ class MainActivity :
             .addToBackStack(null)
             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
             .commit()
+    }
+
+    fun changeTitle(titleRes: Int){
+        supportActionBar?.setTitle(titleRes)
     }
 }
