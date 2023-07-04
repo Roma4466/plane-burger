@@ -25,12 +25,9 @@ class ListFragment : Fragment(), PhotoAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding?.root?.layoutManager = GridLayoutManager(requireContext(), 2)
         val adapter = PhotoAdapter(resources, this)
-
         adapter.photoPostions = mutableListOf(0, 1, 2, 3)
-
         binding?.root?.adapter = adapter
     }
 
@@ -38,7 +35,6 @@ class ListFragment : Fragment(), PhotoAdapter.OnItemClickListener {
         itemBinding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
 
         val fragment = PlaneFragment.newInstance(element)
-
         parentFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
             .setTransition(TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(null).commit()

@@ -51,7 +51,6 @@ class PhotoAdapter(
             binding.year.text = getPhotoFromPosition(resources, i).year
             binding.image.setImageResource(getPhotoFromPosition(resources, i).imageRes)
         }
-
         fun setOnClickListener(listener: OnItemClickListener, i: Int) {
             this.itemView.setOnClickListener {
                 val adapterPosition = adapterPosition

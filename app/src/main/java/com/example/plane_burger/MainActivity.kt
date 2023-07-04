@@ -33,7 +33,12 @@ class MainActivity :
         )
 
         initDrawer(toolbar)
-        supportActionBar?.title = ""
+
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+
+        drawerLayout.setOnTouchListener { view, event -> // Consume the touch event to prevent the drawer from closing
+            true
+        }
 
         replaceFragment(ListFragment())
     }
@@ -41,6 +46,7 @@ class MainActivity :
     private fun initToolbar(): Toolbar {
         val toolbar = binding?.appBarMain?.toolbar
         setSupportActionBar(toolbar)
+        supportActionBar?.title = ""
         binding?.appBarMain?.back?.setOnClickListener {
             super.onBackPressed()
         }
@@ -103,7 +109,7 @@ class MainActivity :
             for (i in 0..3) {
                 val textView = TextView(this@MainActivity)
                 textView.text = getTitle(resources, i)
-                textView.textSize = 16f
+                textView.textSize = 20f
                 textView.setTextColor(ContextCompat.getColor(context, R.color.white))
                 textView.setOnClickListener {
                     val fragment = PlaneFragment.newInstance(i)
@@ -132,7 +138,7 @@ class MainActivity :
     }
 
     fun setDefaultTitle() {
-        binding?.appBarMain?.title?.text = "Airplanes"
+        binding?.appBarMain?.title?.text = resources.getText(R.string.airplanes)
     }
 
     fun setArrowVisibilityToTrue() {

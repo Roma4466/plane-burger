@@ -19,7 +19,6 @@
         android:fitsSystemWindows="true"
         android:background="@color/black"
         app:headerLayout="@layout/nav_header_main"/>
-<!--        app:menu="@menu/drawer_menu" />-->
 
     <include
         android:id="@+id/app_bar_main"
