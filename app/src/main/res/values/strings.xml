@@ -6,5 +6,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="boeing_747">Boeing 747</string>
     <string name="_1970">1970</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="plane_description_title">Airliner proposal</string>
+    <string name="plane_description">In 1965, Joe Sutter was transferred from Boeing\'s 737 development team to manage the design studies for the new airliner, already assigned the model number 747. Sutter began a design study with Pan Am and other airlines to better understand their requirements. At the time, many thought that long-range subsonic airliners would eventually be superseded by supersonic transport aircraft. Boeing responded by designing the 747 so it could be adapted easily to carry freight and remain in production even if sales of the passenger version declined.\n<big><b>Development and testing</b></big>\nThe flight test program was hampered by problems with the 747\'s JT9D engines. Difficulties included engine stalls caused by rapid throttle movements and distortion of the turbine casings after a short period of service. The problems delayed 747 deliveries for several months; up to 20 aircraft at the Everett plant were stranded while awaiting engine installation.</string>
 </resources>

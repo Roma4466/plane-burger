@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/dark_grey"
-    android:layoutDirection="rtl"
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView

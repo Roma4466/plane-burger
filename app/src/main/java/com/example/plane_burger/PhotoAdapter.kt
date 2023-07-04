@@ -1,4 +1,5 @@
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,9 @@ import com.example.plane_burger.Photo
 import com.example.plane_burger.R
 import com.example.plane_burger.databinding.PictureWithTextBinding
 
-class PhotoAdapter :
+class PhotoAdapter(
+    private var itemClickListener: OnItemClickListener
+):
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
     var photos: MutableList<Photo> = mutableListOf()
@@ -25,6 +28,11 @@ class PhotoAdapter :
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
         holder.bind(photos[position])
+
+        holder.setOnClickListener(
+            itemClickListener,
+            photos[holder.adapterPosition]
+        )
     }
 
     override fun getItemCount(): Int {
@@ -37,8 +45,20 @@ class PhotoAdapter :
 
         fun bind(photo: Photo) {
             binding.title.setText(photo.title)
-            binding.year.setText(photo.description)
+            binding.year.setText(photo.year)
             binding.image.setImageResource(photo.imageRes)
         }
+
+        fun setOnClickListener(listener: OnItemClickListener, element: Photo) {
+            this.itemView.setOnClickListener {
+                val adapterPosition = adapterPosition
+                if (adapterPosition != RecyclerView.NO_POSITION)
+                    listener.onItemClick(it, element)
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View, element: Photo)
     }
 }

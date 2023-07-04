@@ -40,7 +40,7 @@ class MainActivity :
             ContextCompat.getColor(this, R.color.white)
         )
         toolbar.setBackgroundColor(
-            ContextCompat.getColor(this, R.color.dark_grey)
+            ContextCompat.getColor(this, R.color.dark_dark_grey)
         )
 
         initDrawer(toolbar)

@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.plane_burger.databinding.FragmentListBinding
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), PhotoAdapter.OnItemClickListener {
     private var binding: FragmentListBinding? = null
 
     override fun onCreateView(
@@ -24,14 +25,54 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.root?.layoutManager = GridLayoutManager(requireContext(), 2)
-        val adapter = PhotoAdapter()
+        val adapter = PhotoAdapter(this)
         adapter.photos = mutableListOf(
-            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
-            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
-            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970),
-            Photo(R.drawable.boeing_747, R.string.boeing_747, R.string._1970)
+            Photo(
+                imageRes = R.drawable.boeing_747,
+                title = R.string.boeing_747,
+                year = R.string._1970,
+                titleDescription = R.string.plane_description_title,
+                description = R.string.plane_description,
+                photoDescription = R.drawable.photo_2023_07_04_19_39_01
+            ),
+            Photo(
+                imageRes = R.drawable.boeing_747,
+                title = R.string.boeing_747,
+                year = R.string._1970,
+                titleDescription = R.string.plane_description_title,
+                description = R.string.plane_description,
+                photoDescription = R.drawable.photo_2023_07_04_19_39_01
+            ),
+            Photo(
+                imageRes = R.drawable.boeing_747,
+                title = R.string.boeing_747,
+                year = R.string._1970,
+                titleDescription = R.string.plane_description_title,
+                description = R.string.plane_description,
+                photoDescription = R.drawable.photo_2023_07_04_19_39_01
+            ),
+            Photo(
+                imageRes = R.drawable.boeing_747,
+                title = R.string.boeing_747,
+                year = R.string._1970,
+                titleDescription = R.string.plane_description_title,
+                description = R.string.plane_description,
+                photoDescription = R.drawable.photo_2023_07_04_19_39_01
+            ),
         )
 
         binding?.root?.adapter = adapter
+    }
+
+    override fun onItemClick(view: View, element: Photo) {
+        val fragment = PlaneFragment.newInstance(
+            stringRes = element.description,
+            titleRes = element.titleDescription,
+            photoRes = element.photoDescription
+        )
+
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment)
+            .setTransition(TRANSIT_FRAGMENT_OPEN)
+            .addToBackStack(null).commit()
     }
 }
