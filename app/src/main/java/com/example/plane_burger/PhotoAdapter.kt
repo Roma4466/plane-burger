@@ -16,7 +16,7 @@ class PhotoAdapter(
     RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder>() {
 
     // its positions in data.xml arrays
-    var photoPostions: MutableList<Int> = mutableListOf()
+    var photoPostions: List<Int> = mutableListOf()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value

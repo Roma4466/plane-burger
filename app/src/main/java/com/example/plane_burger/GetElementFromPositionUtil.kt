@@ -36,6 +36,16 @@ fun getPhotoFromPosition(resources: Resources, i: Int): Photo {
     return photo
 }
 
+fun getWholeElementsPositions(resources: Resources): List<Int>{
+    val iconsArray = resources.obtainTypedArray(R.array.icons)
+    val result = mutableListOf<Int>()
+    for(i in 0 until iconsArray.length()){
+        result.add(i)
+    }
+    iconsArray.recycle()
+    return result
+}
+
 fun getTitle(resources: Resources,  i: Int): String{
     val titlesArray = resources.getStringArray(R.array.titles)
     return titlesArray[i]

@@ -27,7 +27,7 @@ class ListFragment : Fragment(), PhotoAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding?.root?.layoutManager = GridLayoutManager(requireContext(), 2)
         val adapter = PhotoAdapter(resources, this)
-        adapter.photoPostions = mutableListOf(0, 1, 2, 3)
+        adapter.photoPostions = getWholeElementsPositions(resources)
         binding?.root?.adapter = adapter
     }
 
